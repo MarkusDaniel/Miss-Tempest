@@ -17,6 +17,10 @@ $level = $input['level'];
 $health = $input['health'];
 $gemcollected = $input['gemcollected'];
 
+if ($gemcollected > 150) {
+    $gemcollected = 150;
+}
+
 $userId = $_SESSION["id"];
 
 try {

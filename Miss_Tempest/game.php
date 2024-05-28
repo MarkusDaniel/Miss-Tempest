@@ -8,6 +8,14 @@
         header("Location: user.php");
         exit; // Biztonsági okokból azonnal kilépünk a fájlból
     } 
+
+    // Ellenőrizzük, hogy az oldalról érkező kérés tartalmaz-e érvényes azonosítót
+    if (!isset($_SERVER['HTTP_REFERER']) || parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) !== $_SERVER['HTTP_HOST']) {
+    // Ha nincs vagy nem egyezik az azonosító, akkor hibát dobunk és kiléptetjük a felhasználót
+    http_response_code(403); // Forbidden HTTP válasz
+    echo "Forbidden";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,25 +68,9 @@
 
     <canvas></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/controlsmenu.js"></script>
-    <script src="js/utilities.js"></script>
-    <script src="js/Data/collisions.js"></script>
-    <script src="js/Data/platformcolls.js"></script>
-    <script src="js/Classes/collisionBlock.js"></script>
-    <script src="js/Classes/Sprite.js"></script>
-    <script src="js/Classes/Gem.js"></script>
-    <script src="js/Classes/Obstacle.js"></script>
-    <script src="js/Classes/Player.js"></script>
-    <script src="js/Classes/Enemy.js"></script>
-    <script src="js/Classes/Barrier.js"></script>
-    <script src="js/Classes/Bullet.js"></script>
-    <script src="js/Classes/Boss.js"></script>
-    <script src="js/EventListeners.js"></script>
-    <script src="js/Data/levels.js"></script>
-    <script src="js/full-screen.js"></script>
-    <script src="index.js"></script>
-    <script src="js/Server/checkUserProgress.js"></script>
+    <?php include 'include-scripts.php'; ?>
     <script>
+
     fetch('progressiongame.php')
         .then(response => response.json())
         .then(data => {
@@ -92,7 +84,7 @@
                 serverGemCollected = parseInt(userData.gemcollected);
 
                 // Check if all conditions are met
-                if (level === 1 && gemcollected === 0 && health === 3) {
+                if (level === 1 && serverGemCollected === 0 && serverHealth === 3) {
                     document.getElementById('continueButton').style.display = 'none';
                 } else {
                     document.getElementById('continueButton').style.display = 'flex';

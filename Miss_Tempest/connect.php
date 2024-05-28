@@ -5,5 +5,5 @@ function kapcsolodas($kapcsolati_szoveg, $felhasznalonev = '', $jelszo = '') {
     return $pdo;
 }
 
-$kapcsolat = kapcsolodas('mysql:host=mysql.caesar.elte.hu;dbname=danielmarkus;', 'danielmarkus', 'CsillamPoni');
+$kapcsolat = kapcsolodas('mysql:host=mysql.caesar.elte.hu;dbname=danielmarkus;', 'danielmarkus', 'CsillámPoni');
 ?>

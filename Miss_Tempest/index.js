@@ -42,7 +42,6 @@ let enemys = []
 let bosses = []
 let foreground_elements = []
 let gemcollected = 0
-localStorage.setItem('gemcollected',0)
 let deathcount = 0
 const heartSprites = [];
 let heartPositionX = 0;
@@ -204,13 +203,14 @@ function resetPlayerAndLevel() {
     levels[level].init(); // Restart the current level
     player.preventInput = true; // Enable player input
     player.switchSprite('idleRight'); // Switch player sprite to idleRights
-    let gemcollected = parseInt(localStorage.getItem("gemcollected")) || 0;
+    let gemcollected = serverGemCollected;
     if (gemcollected < 10) {
         gemcollected = 0; // If less than 10, set to 0
     } else {
         gemcollected -= 10; // Otherwise, subtract 10
     }
-    localStorage.setItem("gemcollected", gemcollected); // Decrement gemcollected by 10, ensuring it doesn't go below 0
+    updateGemcollected(gemcollected);
+    serverGemCollected = gemcollected // Decrement gemcollected by 10, ensuring it doesn't go below 0
     // Clear heartSprites array
     heartSprites.length = 0;
     // Create heartSprites
@@ -247,7 +247,7 @@ document.getElementById('resetbutton').addEventListener('click', function() {
 });
 
 function sendScoreToServer(score, gemcollected) {
-    gemcollected = parseInt(localStorage.getItem('gemcollected')) || 0;
+    gemcollected = serverGemCollected;
     fetch('update-score.php', {
         method: 'POST',
         headers: {
@@ -268,8 +268,12 @@ function sendScoreToServer(score, gemcollected) {
     });
 }
 
-function updateScore(newScore, gemcollected) {
-    gemcollected = parseInt(localStorage.getItem('gemcollected')) || 0;
+function updateScore(newScore) {
+    let gemcollected = serverGemCollected;
+    
+    // Ha a gemcollected értéke nagyobb, mint 150, akkor állítsuk be azt 150-re
+    gemcollected = Math.min(gemcollected, 150);
+
     const xhr = new XMLHttpRequest();
     xhr.open("POST", 'update-score.php', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -299,7 +303,8 @@ function startGame() {
     level = 1
     gamerunning= true
     resetPlayerAndLevel();
-    
+    gemcollected = 0
+    serverGemCollected = 0
     levels[level].init();
     player.preventInput = false;
     backgroundmusic.play();
@@ -313,7 +318,7 @@ document.getElementById('startGameButton').addEventListener('click', function() 
 });
 
 function endGame(){
-    gemcollected = parseInt(localStorage.getItem('gemcollected'))
+    gemcollected = serverGemCollected;
     updateScore(gemcollected);
     gamerunning= false
     context.clearRect(0, 0, canvas.width, canvas.height)
@@ -358,10 +363,13 @@ document.getElementById('quitbutton').addEventListener('click', function() {
 });
 
 function saveGame() {
+    // Ha a gemcollected értéke nagyobb, mint 150, akkor állítsuk be azt 150-re
+    const maxGemCollected = Math.min(gemcollected, 150);
+    
     const gameState = {
         level: level,
         health: player.health,
-        gemcollected: gemcollected
+        gemcollected: maxGemCollected // Az új gemcollected érték
     };
 
     fetch('save_game.php', {
@@ -387,9 +395,9 @@ function saveGame() {
         alert('Failed to save the game: ' + error.message);
     });
 }
+
 document.getElementById('saveButton').addEventListener('click', function() {
     saveGame();
-    
 });
 
 let serverHealth = 3;
@@ -417,9 +425,10 @@ function continueGameWithProgress() {
                 player.preventInput = false;
                 backgroundmusic.play();
                 continueGame();
-                
+                gemcollected = serverGemCollected;
                 player.health = serverHealth;
-                localStorage.setItem('gemcollected', serverGemCollected);
+                updateGemcollected(serverGemCollected);
+                updateGemcollected(gemcollected);
             } else {
                 console.error("Hiba: " + data.message);
             }
@@ -435,7 +444,6 @@ document.getElementById('continueButton').addEventListener('click', function() {
 function animate() {
     if (!gamerunning || gamePaused) return;  
     gemcollected = serverGemCollected;
-    gemcollected = parseInt(localStorage.getItem('gemcollected')) || 0;
     if (level === 13) {
         gamerunning = false;
         backgroundmusic.pause();
@@ -496,8 +504,10 @@ function animate() {
             playerTop < gemBottom) {
             gems.splice(i, 1);
             coin_sound.play();
-            localStorage.setItem("gemcollected", gemcollected + 1);
+            updateGemcollected(gemcollected++)
+            serverGemCollected= gemcollected
             filltext();
+            
         }
     }
 
@@ -568,7 +578,8 @@ function animate() {
 
     if (player.position.y + player.height > 630) {
         resetPlayerAndLevel();
-        localStorage.setItem("gemcollected", gemcollected + 10);
+        updateGemcollected(gemcollected+10)
+        serverGemCollected= gemcollected
     }
 
     context.save();
@@ -576,4 +587,25 @@ function animate() {
     context.fillStyle = 'black';
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.restore();
+}
+
+function updateGemcollected(gemcollected) {
+    fetch('update-gemcollected.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `gemcollected=${gemcollected}` // csak a gemcollected érték küldése
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            
+        } else {
+            console.error('Error updating gemcollected:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }

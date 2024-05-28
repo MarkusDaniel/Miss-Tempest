@@ -12,7 +12,7 @@ function checkUserProgress() {
                 serverGemCollected = parseInt(userData.gemcollected);
 
                 // Check if all conditions are met
-                if (level === 1 && gemcollected === 0 && health === 3) {
+                if (level === 1 && serverGemCollected === 0 && serverHealth === 3) {
                     document.getElementById('continueButton').style.display = 'none';
                 } else {
                     document.getElementById('continueButton').style.display = 'flex';
