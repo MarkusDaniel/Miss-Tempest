@@ -1,0 +1,365 @@
+@import url('https://fonts.cdnfonts.com/css/public-pixel');
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  font-size: 2vh;
+  background-color: #000000; /* Fekete háttérszín */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+h1{
+  color: #b2b892;
+  text-align: center;
+  max-width: 60vh;
+  font-size: 4vh;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  text-shadow: 
+  -0.3vh -0.3vh 0 #4f5045,  
+  0.3vh -0.3vh 0 #4f5045,
+  -0.3vh 0.3vh 0 #4f5045,
+  0.3vh 0.3vh 0 #4f5045;
+}
+p{
+  color: #b2b892;
+  align-items: center;
+  text-align: center;
+  text-shadow: 
+  -0.2vh -0.2vh 0 #4f5045,  
+  0.2vh -0.2vh 0 #4f5045,
+  -0.2vh 0.2vh 0 #4f5045,
+  0.2vh 0.2vh 0 #4f5045;
+}
+
+.background {
+  width: 86vw;
+  height: 100vh;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('sprites/levels/Title-screen.png') center center / contain no-repeat;
+  z-index: 0;
+}
+.flex-box{
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 100vh;
+}
+.credit-container{
+  display: flex;
+    flex-direction: column; /* A tartalom jobb oldalra igazítása */
+    align-items: center;
+    background-color: #6d6156;
+  border: 0.4vh solid #412f26;
+}
+
+.no-underline {
+  text-decoration: none;
+  color: #8473e5;
+}
+
+.no-underline:hover {
+  color: #a0e573; /* Beállítja a hover színt */
+}
+
+.credit-container p{
+  color: #b2b892;
+  padding-bottom: 1em;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  font-size: 2vh;
+  text-align: center;
+  text-shadow: 
+  -0.2vh -0.2vh 0 #4f5045,  
+  0.2vh -0.2vh 0 #4f5045,
+  -0.2vh 0.2vh 0 #4f5045,
+  0.2vh 0.2vh 0 #4f5045;
+}
+
+.feedback{
+  display: none;
+  background-color: #6d6156;
+  border: 0.4vh solid #412f26;
+  flex-direction: column; /* A tartalom jobb oldalra igazítása */
+  align-items: center;
+  padding: 1vh 1vw; /* Arányos padding a viewport méretéhez képest */
+  z-index: 3; /* A form a háttér előtt legyen */
+  position: relative; /* Szükséges a z-index érvényesítéséhez */
+  width: 55vh;
+  height: 68vh;
+  margin-top: 34vh;
+  margin-bottom: 18vh;
+  margin-left: -50vh;
+  max-height: 68vh;
+  max-width: 55vh;
+}
+
+.feedback textarea {
+  width: 55vh;
+  max-width: 55vh;
+  margin-top: 0vh;
+  margin-bottom: 1vh;
+  margin-left: 0vh;
+  height: 52vh; /* növelve a textarea magasságát */
+  max-height: 52vh;
+  display: block;
+  position:relative;
+  font-size: 2vh;
+  background-color: #b2b892;
+  outline: none;
+  resize: none;
+  border: none;
+}
+.feedback textarea:focus {
+  outline: none; /* Törölje az alapértelmezett kijelölési keretet */
+  border: none;
+}
+
+.feedback button {
+  margin-top: 1vh;
+  margin-bottom:1vh;
+  padding: 1vh 2vw;
+  font-size: 1.8vh;
+  margin-left: 11vh;
+  position: center;
+}
+
+.scroll-box {
+  max-height: 55vh;
+  overflow-y: auto;
+  padding: 1vh 1vw;
+  margin-bottom: 1vh;
+  margin-top: 0;
+  margin-left: -25vw;
+  width: calc(50vh + 0.4vh);
+  z-index: 1;
+  background-color: #6b5c54;
+  border: 0.4vh solid #412f26;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+.scroll-box::-webkit-scrollbar {
+  width: 0.4vh; /* Adjust the width of the scrollbar */
+}
+
+.scroll-box::-webkit-scrollbar-track {
+  background: #6b5c54; /* Match the background color */
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+  background-color: #412f26; /* Match the border color */
+}
+
+/* Firefox */
+.scroll-box {
+  scrollbar-width: thin; /* Makes the scrollbar thin */
+  scrollbar-color: #412f26 #6b5c54; /* thumb color, track color */
+}
+
+.scorelabel{
+  z-index: 2; 
+  margin-top: 22vh;
+  margin-bottom: 0;
+  font-size: 3vh;
+  margin-left: -25vw; 
+  padding-bottom: 0;
+}
+.scorelabel p{
+  background-color: #6b5c54;
+  border-top: 0.4vh solid #412f26;
+  border-right: 0.4vh solid #412f26;
+  border-left: 0.4vh solid #412f26;
+  border-bottom: none;
+  padding: 1vh 10.75vh;
+  margin: 0;
+}
+
+.Back{
+  z-index: 2;
+  padding: 1vh 1vw;
+  margin-top: 0.3vh;
+  margin-bottom: 3vh;
+  margin-left: -25vw;
+  font-size: 2.5vh;
+  outline: none;
+  
+}
+.user-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5vh 0;
+  border-bottom: 0.2vh solid #412f26;
+}
+.user-name {
+  flex: 1;
+  color: #b2b892;
+  font-size: 2vh;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  text-shadow: 
+  -0.2vh -0.2vh 0 #4f5045,  
+  0.2vh -0.2vh 0 #4f5045,
+  -0.2vh 0.2vh 0 #4f5045,
+  0.2vh 0.2vh 0 #4f5045;
+}
+.user-score {
+  flex: 0 0 auto;
+  margin-left: 10px;
+  color: #acb480;
+  font-size: 2vh;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  text-shadow: 
+  -0.2vh -0.2vh 0 #4f5045,  
+  0.2vh -0.2vh 0 #4f5045,
+  -0.2vh 0.2vh 0 #4f5045,
+  0.2vh 0.2vh 0 #4f5045;
+}
+
+/*Buttons*/
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Középre igazítja a form elemeit */
+  padding: 5vh 5vw; /* Arányos padding a viewport méretéhez képest */
+  z-index: 1; /* A form a háttér előtt legyen */
+  position: relative; /* Szükséges a z-index érvényesítéséhez */
+  width: 60vh;
+  height: 60vh;
+  margin-top: 30vh;
+  margin-bottom: 20vh;
+  margin-left: -25vw;
+  max-height: 60vh;
+  max-width: 60vh;
+}
+
+
+
+button {
+  padding: 1vh 2vw; /* Arányos padding */
+  background-color: #6b5c54; /* Gomb háttérszíne */
+  color: #b2b892; /* Gomb szövegszíne */
+  cursor: pointer;
+  font-size: 3.7vh;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  transition: transform 0.3s, background-color 0.3s, color 0.3s; /* Sima animáció */
+  text-shadow: 
+  -0.2vh -0.2vh 0 #4f5045,  
+  0.2vh -0.2vh 0 #4f5045,
+  -0.2vh 0.2vh 0 #4f5045,
+  0.2vh 0.2vh 0 #4f5045;
+  margin-bottom: 1vh;
+  margin-top:1vh;
+  border: 0.4vh solid #412f26;
+  border-top:0.4vh solid rgba(252, 235, 191, 0.5);
+  max-width: 60vh;
+  max-height: 10vh;
+  outline: none;
+}
+
+button:hover {
+  background-color: #6b5c54;
+  color: #a0e573;
+  transform: scale(1.2); /* 20%-kal nagyobb */
+}
+
+/* Forms*/
+.registration-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Középre igazítja a form elemeit */
+  padding: 5vh 5vw; /* Arányos padding a viewport méretéhez képest */
+  z-index: 1; /* A form a háttér előtt legyen */
+  position: relative; /* Szükséges a z-index érvényesítéséhez */
+  width: 20vw;
+  height: 40vh;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+  margin-left: -25vw;
+  max-height: 60vh;
+  max-width: 40vh;
+}
+
+.registration-form label {
+  margin-bottom: 1vh;;
+  color: #b2b892; /* Felirat színe */
+  font-weight: bold;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  font-size: 3vh;
+  text-shadow: 
+  -0.2vh -0.2vh 0 #4f5045,  
+  0.2vh -0.2vh 0 #4f5045,
+  -0.2vh 0.2vh 0 #4f5045,
+  0.2vh 0.2vh 0 #4f5045;/* Körvonal színe */
+}
+
+.registration-form label,
+.registration-form input,
+.registration-form textarea{
+    margin-bottom: 1vh;
+    outline: none;
+}
+
+.registration-form input[type="text"]{
+  margin-bottom: 3vh;
+  outline: none;
+}
+.registration-form input[type="text"],
+.registration-form input[type="password"] {
+  width: 100%;
+  max-height: 3vh;
+  outline: none;
+  padding: 1vh; /* Arányos padding */
+  margin-top: 0.5vh;
+  background-color: #b2b892; /* Háttérszín */
+  color: #6b5c54; /* Felhasználó által írt szöveg színe */
+  font-size: 2.5vh;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  text-shadow: 
+  -0.2vh -0.2vh 0 #412f26,  
+  0.2vh -0.2vh 0 #412f26,
+  -0.2vh 0.2vh 0 #412f26,
+  0.2vh 0.2vh 0 #412f26;
+  font-family: 'Public Pixel', 'Arial Narrow';
+  border: 0.2vh solid #412f26; /* Körvonal színe */
+  
+}
+
+.registration-form input[type="submit"] {
+  padding: 1vh 2vw; /* Arányos padding */
+  border: none;
+  outline: none;
+  font-family: 'Public Pixel', 'Arial Narrow';
+    font-size: 3vh;
+    max-width: 35vh;
+    margin-top: 3vh;
+    background-color: #6b5c54;
+    border: 0.4vh solid #412f26;
+    border-top:0.4vh solid rgba(252, 235, 191, 0.5);
+    color: #b2b892;
+    cursor: pointer;
+    text-shadow: 
+    -0.2vh -0.2vh 0 #4f5045,  
+    0.2vh -0.2vh 0 #4f5045,
+    -0.2vh 0.2vh 0 #4f5045,
+    0.2vh 0.2vh 0 #4f5045; /* Körvonal színe */
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.registration-form input[type="submit"]:hover {
+    background-color: #6b5c54;
+    color:#a0e573;
+    transform: scale(1.2);
+    outline: none;
+}

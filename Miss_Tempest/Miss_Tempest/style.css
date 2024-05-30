@@ -1,0 +1,169 @@
+@import url('https://fonts.cdnfonts.com/css/public-pixel');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Public Pixel', 'Arial Narrow';
+    font-size: 2vh;
+    background-color: #000000; /* Fekete háttérszín */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.background {
+    width: 86vw;
+    height: 100vh;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('sprites/levels/Title-screen.png') center center / contain no-repeat;
+    z-index: 0;
+}
+h1{
+    color: #b2b892;
+    text-align: center;
+    font-family: 'Public Pixel', 'Arial Narrow';
+    text-shadow: 
+    -0.3vh -0.3vh 0 #4f5045,  
+    0.3vh -0.3vh 0 #4f5045,
+    -0.3vh 0.3vh 0 #4f5045,
+    0.3vh 0.3vh 0 #4f5045;
+
+  }
+  p{
+    color: #b2b892;
+    text-shadow: 
+    -0.2vh -0.2vh 0 #4f5045,  
+    0.2vh -0.2vh 0 #4f5045,
+    -0.2vh 0.2vh 0 #4f5045,
+    0.2vh 0.2vh 0 #4f5045;
+  }
+.controls{
+    display: none;
+    background-color: #6b5c54;
+    border: 0.4vh solid #412f26;
+    flex-direction: column; /* A tartalom jobb oldalra igazítása */
+    padding: 1vh 1vw; /* Arányos padding a viewport méretéhez képest */
+    z-index: 2; /* A form a háttér előtt legyen */
+    position: relative; /* Szükséges a z-index érvényesítéséhez */
+    width: 60vh;
+    height: 57vh;
+    margin-top: 28vh;
+    margin-bottom: 20vh;
+    margin-left: -40vw;
+    max-height: 57vh;
+    max-width: 60vh;
+}
+.controls p.or {
+    align-self: center; /* Az 'or' középre igazítása */
+    border:none;
+}
+.controls p {
+    border-bottom: 0.2vh solid #412f26;
+    padding-bottom: 1vh;
+    
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Középre igazítja a form elemeit */
+    padding: 5vh 5vw; /* Arányos padding a viewport méretéhez képest */
+    z-index: 1; /* A form a háttér előtt legyen */
+    position: relative; /* Szükséges a z-index érvényesítéséhez */
+    width: 60vh;
+    height: 60vh;
+    margin-top: 40vh;
+    margin-bottom: 20vh;
+    margin-left: -25vw;
+    max-height: 60vh;
+    max-width: 60vh;
+}
+
+button {
+    padding: 1vh 2vw; /* Arányos padding */
+    background-color: #6b5c54; /* Gomb háttérszíne */
+    color: #b2b892; /* Gomb szövegszíne */
+    cursor: pointer;
+    font-size: 4vh;
+    font-family: 'Public Pixel', 'Arial Narrow';
+    transition: transform 0.3s, background-color 0.3s, color 0.3s; /* Sima animáció */
+    text-shadow: 
+    -0.2vh -0.2vh 0 #4f5045,  
+    0.2vh -0.2vh 0 #4f5045,
+    -0.2vh 0.2vh 0 #4f5045,
+    0.2vh 0.2vh 0 #4f5045;
+    margin-bottom: 1vh;
+    margin-top:1vh;
+    border: 0.4vh solid #412f26;
+    border-top:0.4vh solid rgba(252, 235, 191, 0.5);
+    max-width: 60vh;
+    max-height: 10vh;
+}
+  
+button:hover {
+    background-color: #6b5c54;
+    color: #a0e573;
+    transform: scale(1.2); /* 20%-kal nagyobb */
+}
+
+#startGameButton{
+    font-size: 6vh;
+}
+
+.pause_menu{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border:0.4vh solid rgba(222, 250, 255, 0.5);
+    flex-direction: column;
+    align-items: center;
+    padding: 0vh 5vw; 
+    z-index: 1; 
+    position: center; 
+    width: 30vh;
+    height: 60vh;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    max-height: 60vh;
+    max-width: 30vh;
+}
+
+.pause_menu h1{
+    margin-top: - 2vh;
+    font-size: 7vh;
+}
+.pause_menu button {
+    margin: 1vh 0; /* További térköz a gombok között */
+    position: center; 
+    border-top:0.4vh solid rgba(252, 235, 191, 0.5);
+}
+
+
+canvas{
+    z-index: 0;
+    width:86vw;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin: auto;
+    position :absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast
+}

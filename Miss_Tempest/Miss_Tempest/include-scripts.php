@@ -1,0 +1,40 @@
+<?php
+echo '
+<script>';
+echo file_get_contents('js/controlsmenu.js');
+echo '</script><script>';
+echo file_get_contents('js/utilities.js');
+echo '</script><script>';
+echo file_get_contents('js/Data/collisions.js');
+echo '</script><script>';
+echo file_get_contents('js/Data/platformcolls.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/collisionBlock.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Sprite.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Gem.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Obstacle.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Player.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Enemy.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Barrier.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Bullet.js');
+echo '</script><script>';
+echo file_get_contents('js/Classes/Boss.js');
+echo '</script><script>';
+echo file_get_contents('js/EventListeners.js');
+echo '</script><script>';
+echo file_get_contents('js/Data/levels.js');
+echo '</script><script>';
+echo file_get_contents('js/full-screen.js');
+echo '</script><script>';
+echo file_get_contents('index.js');
+echo '</script><script>';
+echo file_get_contents('js/Server/checkUserProgress.js');
+echo '</script>';
+?>
